@@ -57,14 +57,17 @@ namespace RealEstateProject.Windows.Editing
                 }
                 if (surnameTB.Text == "" && surnameTB.Text.Length > 0)
                 {
+                    MessageBox.Show("Нельзя создать риелтора без фамилий","Уведомление");
                     return;
                 }
                 if (nameTB.Text == "" && nameTB.Text.Length > 0)
                 {
+                    MessageBox.Show("Нельзя создать риелтора без имени", "Уведомление");
                     return;
                 }
                 if (patronymicTB.Text == "" && patronymicTB.Text.Length > 0)
                 {
+                    MessageBox.Show("Нельзя создать риелтора без отчества", "Уведомление");
                     return;
                 }
                 var dealShare = Convert.ToInt32(DealShareTB.Text);
