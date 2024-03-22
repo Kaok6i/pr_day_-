@@ -1,0 +1,62 @@
+﻿<Window x:Class="RealEstateProject.Windows.Client.ClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RealEstateProject.Windows.Client"
+        mc:Ignorable="d"
+            Title="Eesoft | Агенство Недвижимости | Список клиентов" Height="450" Width="800" MinHeight="450" MinWidth="800"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Клиенты" FontSize="24px" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto"/>
+        <Button x:Name="BackBtn" Content="Назад"  Width="150" Height="36" Grid.Column="1" HorizontalAlignment="Left"  FontSize="18" Click="BackBtn_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3"></Setter>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <DataGrid x:Name="clientsDG"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding MiddleName}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Phone}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="AddBtn" Content="Добавить" Grid.Row="2" Width="150" Height="36" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" Click="AddBtn_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3"></Setter>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="ChangeBtn" Content="Изменить"  Grid.Row="2" Width="150" Height="36" Grid.Column="1" Grid.ColumnSpan="2" FontSize="18" Click="ChangeBtn_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3"></Setter>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="DeleteBtn" Content="Удалить" Grid.Row="2" Width="150" Height="36" Grid.Column="2" HorizontalAlignment="Center" FontSize="18" Click="DeleteBtn_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3"></Setter>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <TextBox x:Name="FindLineTextBox" Background="#FF0091EA" Grid.Row="1" Margin="164,0,36,0" VerticalAlignment="Top" VerticalContentAlignment="Center" TextChanged="FindLineTextBox_TextChanged" Height="25" Width="NaN" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Поиск" Margin="116,5,0,227" HorizontalAlignment="Left" Width="48" Grid.Column="2" Grid.Row="1"/>
+    </Grid>
+</Window>
