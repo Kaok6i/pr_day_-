@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -54,31 +55,51 @@ namespace RealEstateProject.Windows.Editing
                 {
                     hasDeal = true;
                 }
-                if ( hasDeal)
+                if (surnameTB.Text == "" && surnameTB.Text.Length > 0)
                 {
-                    agents.FirstName = surnameTB.Text;
-                    agents.MiddleName = nameTB.Text;
-                    agents.LastName = patronymicTB.Text;
-                    agents.DealShare = Convert.ToInt32(DealShareTB.Text);
-                    entity.Agents.AddOrUpdate(agents);
-                    entity.SaveChanges();
-                    string action;
-                    if (isEdit)
+                    return;
+                }
+                if (nameTB.Text == "" && nameTB.Text.Length > 0)
+                {
+                    return;
+                }
+                if (patronymicTB.Text == "" && patronymicTB.Text.Length > 0)
+                {
+                    return;
+                }
+                var dealShare = Convert.ToInt32(DealShareTB.Text);
+                if (dealShare > 0 && dealShare <= 100)
+                {
+                    if (hasDeal)
                     {
-                        action = "изменен";
+                        agents.FirstName = surnameTB.Text;
+                        agents.MiddleName = nameTB.Text;
+                        agents.LastName = patronymicTB.Text;
+                        agents.DealShare = dealShare;
+                        entity.Agents.AddOrUpdate(agents);
+                        entity.SaveChanges();
+                        string action;
+                        if (isEdit)
+                        {
+                            action = "изменен";
+                        }
+                        else
+                        {
+                            action = "добавлен";
+                        }
+                        MessageBox.Show($"Агент успешно {action}", "Уведомление");
+                        backBttn_Click(sender, e);
                     }
                     else
                     {
-                        action = "добавлен";
+                        MessageBox.Show("Нельзя создать Агента без комиссионной доли",
+                            "Уведомление");
+                        return;
                     }
-                    MessageBox.Show($"Агент успешно {action}", "Уведомление");
-                    backBttn_Click(sender, e);
                 }
                 else
                 {
-                    MessageBox.Show("Нельзя создать Агента без комиссионной доли",
-                        "Уведомление");
-                    return;
+                    MessageBox.Show("Введена некорректная комиссионная доля","Уведомление");
                 }
             }
             catch (Exception error)
@@ -110,6 +131,11 @@ namespace RealEstateProject.Windows.Editing
                 agents = new Agents();
                 agents.Id = entity.Agents.Max(x => x.Id) + 1;
             }
+        }
+        Regex regex = new Regex("^[0-9]+");
+        private void DealShareTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !regex.IsMatch(e.Text);
         }
     }
 }

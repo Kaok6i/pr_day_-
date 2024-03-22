@@ -27,8 +27,8 @@
         <TextBlock Text="Отчество" FontSize="24px" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto"/>
         <TextBox x:Name="patronymicTB" Grid.Column="2" Grid.Row="2" Width="150" Height="36" FontSize="18px"/>
         <TextBlock Text="Комиссионная доля" FontSize="24px" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto"/>
-        <TextBox x:Name="DealShareTB" Grid.Column="2" Width="150" Grid.Row="3" Height="36" FontSize="18px"/>
-        <Button x:Name="backBttn" Content="Назад"   Grid.Row="5" Width="150" Height="36" Grid.Column="1" HorizontalAlignment="Left" FontFamily="Roboto" Background="#FF0091EA" BorderBrush="#FF0091EA" Foreground="White" FontSize="18" Click="backBttn_Click">
+        <TextBox x:Name="DealShareTB" Grid.Column="2" Width="150" Grid.Row="3" Height="36" FontSize="18px" MaxLength="3" PreviewTextInput="DealShareTB_PreviewTextInput"/>
+        <Button x:Name="backBttn" Content="Назад"  Grid.Row="5" Width="150" Height="36" Grid.Column="1" HorizontalAlignment="Left" FontFamily="Roboto" Background="#FF0091EA" BorderBrush="#FF0091EA" Foreground="White" FontSize="18" Click="backBttn_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"></Setter>
